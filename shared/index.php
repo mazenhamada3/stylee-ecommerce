@@ -1,8 +1,4 @@
 <?php
-// ─────────────────────────────────────────────
-//  shared/index.php  ← main entry point / router
-// ─────────────────────────────────────────────
-
 require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/functions.php';
 require_once __DIR__ . '/../login/login.php';
@@ -10,30 +6,23 @@ require_once __DIR__ . '/../products/products.php';
 require_once __DIR__ . '/../cart/cart.php';
 require_once __DIR__ . '/../admin/admin.php';
 
-// ── Resolve route ─────────────────────────────────────────────────────────────
-$requestUri = $_SERVER['REQUEST_URI'];
-$path       = parse_url($requestUri, PHP_URL_PATH);
+// Route comes from ?route=xxx query param (sent by the JS api() helper in data.js)
+$route = trim($_GET['route'] ?? '', '/');
 
-// Remove everything up to and including "shared/index.php"
-// Supports: /Webproject/shared/index.php/products  →  products
-//           /shared/index.php/login               →  login
-$path  = preg_replace('#^.*shared/index\.php/?#', '', $path);
-$route = trim(str_replace('api/', '', $path), '/');
-
-if ($route === '') {
-    $route = trim(str_replace('api/', '', $_GET['route'] ?? ''), '/');
+// Strip leading 'api/' if present
+if (strpos($route, 'api/') === 0) {
+    $route = substr($route, 4);
 }
 
 if ($route === '') {
     $route = 'products';
 }
 
-// ── Dispatch ──────────────────────────────────────────────────────────────────
 try {
 
     switch ($route) {
 
-        // ── Public routes ─────────────────────────────────────────────────────
+        // Public routes
 
         case 'products':
             require_method('GET');
@@ -67,7 +56,7 @@ try {
             checkout(input_json());
             break;
 
-        // ── Admin routes ──────────────────────────────────────────────────────
+        // Admin routes
 
         case 'admin/products':
             require_admin();
@@ -99,8 +88,6 @@ try {
             require_admin();
             reset_demo_products();
             break;
-
-        // ── Fallback ──────────────────────────────────────────────────────────
 
         default:
             json_response([
