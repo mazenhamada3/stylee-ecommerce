@@ -6,6 +6,7 @@ CREATE DATABASE stylee_store
 
 USE stylee_store;
 
+-- ================= USERS =================
 CREATE TABLE users (
   id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(120) NOT NULL,
@@ -15,6 +16,7 @@ CREATE TABLE users (
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- ================= PRODUCTS =================
 CREATE TABLE products (
   id VARCHAR(120) PRIMARY KEY,
   name VARCHAR(180) NOT NULL,
@@ -26,6 +28,7 @@ CREATE TABLE products (
   updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- ================= COLORS =================
 CREATE TABLE product_colors (
   id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   product_id VARCHAR(120) NOT NULL,
@@ -39,10 +42,12 @@ CREATE TABLE product_colors (
     ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- ================= SIZES (FIXED) =================
 CREATE TABLE product_color_sizes (
   id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   color_id INT UNSIGNED NOT NULL,
   size_name VARCHAR(20) NOT NULL,
+  size_order INT UNSIGNED NOT NULL DEFAULT 0,
   qty_stock INT UNSIGNED NOT NULL DEFAULT 0,
   UNIQUE KEY unique_color_size (color_id, size_name),
   CONSTRAINT fk_product_color_sizes_color
@@ -50,6 +55,7 @@ CREATE TABLE product_color_sizes (
     ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- ================= ORDERS =================
 CREATE TABLE orders (
   id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   user_id INT UNSIGNED NOT NULL,
@@ -63,6 +69,7 @@ CREATE TABLE orders (
     ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- ================= ORDER ITEMS =================
 CREATE TABLE order_items (
   id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   order_id INT UNSIGNED NOT NULL,
@@ -83,6 +90,7 @@ CREATE TABLE order_items (
     ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- ================= ADMIN =================
 INSERT INTO users (name, email, password_hash, role)
 VALUES (
   'STYLEE Admin',
@@ -91,11 +99,13 @@ VALUES (
   'admin'
 );
 
+-- ================= PRODUCTS =================
 INSERT INTO products (id, name, category, gender, price, description) VALUES
 ('puffer-jacket', 'Premium Puffer Jacket', 'Jackets', 'men', 179.00, 'Oversized premium puffer with quilted paneling. Water-resistant shell and streetwear fit.'),
 ('bomber-camo-set', 'Bomber & Camo Set', 'Sets', 'women', 189.00, 'Relaxed streetwear set with oversized bomber jacket and camo pants.'),
 ('urban-black-ensemble', 'Urban Black Ensemble', 'Outerwear', 'both', 249.00, 'Layered urban outfit made for daily streetwear styling.');
 
+-- ================= COLORS =================
 INSERT INTO product_colors (id, product_id, name, hex, photo, sort_order) VALUES
 (1, 'puffer-jacket', 'Black', '#000000', 'https://images.unsplash.com/photo-1611312449408-fcece27cdbb7?w=900', 0),
 (2, 'puffer-jacket', 'Navy', '#263949', 'https://images.unsplash.com/photo-1523398002811-999ca8dec234?w=900', 1),
@@ -105,11 +115,12 @@ INSERT INTO product_colors (id, product_id, name, hex, photo, sort_order) VALUES
 (6, 'urban-black-ensemble', 'Black', '#000000', 'https://images.unsplash.com/photo-1523398002811-999ca8dec234?w=900', 0),
 (7, 'urban-black-ensemble', 'Grey', '#777777', 'https://images.unsplash.com/photo-1487222477894-8943e31ef7b2?w=900', 1);
 
-INSERT INTO product_color_sizes (color_id, size_name, qty_stock) VALUES
-(1, 'S', 8), (1, 'M', 10), (1, 'L', 7), (1, 'XL', 5), (1, 'XXL', 3),
-(2, 'S', 3), (2, 'M', 6), (2, 'L', 4), (2, 'XL', 2), (2, 'XXL', 1),
-(3, 'S', 5), (3, 'M', 4), (3, 'L', 3), (3, 'XL', 0), (3, 'XXL', 0),
-(4, 'S', 6), (4, 'M', 8), (4, 'L', 5), (4, 'XL', 4), (4, 'XXL', 2),
-(5, 'S', 2), (5, 'M', 5), (5, 'L', 2), (5, 'XL', 1), (5, 'XXL', 0),
-(6, 'S', 4), (6, 'M', 6), (6, 'L', 5), (6, 'XL', 3), (6, 'XXL', 1),
-(7, 'S', 1), (7, 'M', 2), (7, 'L', 3), (7, 'XL', 0), (7, 'XXL', 0);
+-- ================= SIZES =================
+INSERT INTO product_color_sizes (color_id, size_name, size_order, qty_stock) VALUES
+(1, 'S', 1, 8), (1, 'M', 2, 10), (1, 'L', 3, 7), (1, 'XL', 4, 5), (1, 'XXL', 5, 3),
+(2, 'S', 1, 3), (2, 'M', 2, 6), (2, 'L', 3, 4), (2, 'XL', 4, 2), (2, 'XXL', 5, 1),
+(3, 'S', 1, 5), (3, 'M', 2, 4), (3, 'L', 3, 3), (3, 'XL', 4, 0), (3, 'XXL', 5, 0),
+(4, 'S', 1, 6), (4, 'M', 2, 8), (4, 'L', 3, 5), (4, 'XL', 4, 4), (4, 'XXL', 5, 2),
+(5, 'S', 1, 2), (5, 'M', 2, 5), (5, 'L', 3, 2), (5, 'XL', 4, 1), (5, 'XXL', 5, 0),
+(6, 'S', 1, 4), (6, 'M', 2, 6), (6, 'L', 3, 5), (6, 'XL', 4, 3), (6, 'XXL', 5, 1),
+(7, 'S', 1, 1), (7, 'M', 2, 2), (7, 'L', 3, 3), (7, 'XL', 4, 0), (7, 'XXL', 5, 0);

@@ -21,6 +21,10 @@ $path  = preg_replace('#^.*shared/index\.php/?#', '', $path);
 $route = trim(str_replace('api/', '', $path), '/');
 
 if ($route === '') {
+    $route = trim(str_replace('api/', '', $_GET['route'] ?? ''), '/');
+}
+
+if ($route === '') {
     $route = 'products';
 }
 
@@ -78,7 +82,7 @@ try {
             json_response(['success' => false, 'message' => 'Method not allowed.'], 405);
             break;
 
-       case 'admin/orders':
+        case 'admin/orders':
             require_admin();
             require_method('GET');
             fetch_orders();

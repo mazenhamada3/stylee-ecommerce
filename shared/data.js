@@ -82,7 +82,9 @@ function getSizeList(product, colorNameOrIndex = null) {
   const color = getColor(product, colorNameOrIndex);
   const sizes = color?.sizes?.length ? color.sizes : product?.sizes || [];
 
-  return sizes.map(size => {
+  const order = ['S', 'M', 'L', 'XL', 'XXL'];
+
+  const normalized = sizes.map(size => {
     if (typeof size === 'string') {
       return { name: size, qty: 99 };
     }
@@ -92,6 +94,10 @@ function getSizeList(product, colorNameOrIndex = null) {
       qty: Number(size.qty) || 0
     };
   });
+
+  return normalized.sort((a, b) =>
+    order.indexOf(a.name) - order.indexOf(b.name)
+  );
 }
 
 function getAvailableSizes(product, colorNameOrIndex = null) {
