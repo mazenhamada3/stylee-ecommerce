@@ -11,15 +11,7 @@ require_once __DIR__ . '/../cart/cart.php';
 require_once __DIR__ . '/../admin/admin.php';
 
 // ── Resolve route ─────────────────────────────────────────────────────────────
-$requestUri = $_SERVER['REQUEST_URI'];
-$path       = parse_url($requestUri, PHP_URL_PATH);
-
-// Remove everything up to and including "shared/index.php"
-// Supports: /Webproject/shared/index.php/products  →  products
-//           /shared/index.php/login               →  login
-$path  = preg_replace('#^.*shared/index\.php/?#', '', $path);
-$route = trim(str_replace('api/', '', $path), '/');
-
+$route = trim($_GET['route'] ?? 'products');
 if ($route === '') {
     $route = 'products';
 }

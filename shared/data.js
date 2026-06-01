@@ -6,7 +6,7 @@ let currentUser = null;
 async function api(route, options = {}) {
   const { params = {}, ...fetchOptions } = options;
 
-  const url = new URL('index.php', window.location.origin + '/Webproject/shared/');
+  const url = new URL('../shared/index.php', window.location.href);
   url.searchParams.set('route', route);
 
   Object.entries(params).forEach(([key, value]) => {
