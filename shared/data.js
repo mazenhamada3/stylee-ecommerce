@@ -1,12 +1,12 @@
-const API_BASE = '../api/index.php';
-
+const API_BASE = 'index.php';
 let products = [];
 let cart = JSON.parse(localStorage.getItem('styleeCart')) || [];
 let currentUser = null;
 
 async function api(route, options = {}) {
   const { params = {}, ...fetchOptions } = options;
-  const url = new URL(API_BASE, window.location.href);
+
+  const url = new URL('index.php', window.location.origin + '/Webproject/shared/');
   url.searchParams.set('route', route);
 
   Object.entries(params).forEach(([key, value]) => {

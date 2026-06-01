@@ -238,9 +238,9 @@ async function updateOrderStatus(orderId, status) {
   }
 
   try {
-    await api('admin/orders', {
-      method: 'PATCH',
-      body: JSON.stringify({ order_id: orderId, status })
+    await api('admin/order-status', {
+      method: 'POST',
+      body: JSON.stringify({ orderId, status })
     });
 
     await Promise.all([loadOrders(), loadProducts()]);
