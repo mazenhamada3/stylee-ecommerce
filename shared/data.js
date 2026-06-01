@@ -6,7 +6,7 @@ let currentUser = null;
 async function api(route, options = {}) {
   const { params = {}, ...fetchOptions } = options;
 
-  const url = new URL('index.php', window.location.origin + '/Webproject/shared/');
+  const url = new URL('../shared/index.php', window.location.href);
   url.searchParams.set('route', route);
 
   Object.entries(params).forEach(([key, value]) => {
@@ -82,9 +82,7 @@ function getSizeList(product, colorNameOrIndex = null) {
   const color = getColor(product, colorNameOrIndex);
   const sizes = color?.sizes?.length ? color.sizes : product?.sizes || [];
 
-  const order = ['S', 'M', 'L', 'XL', 'XXL'];
-
-  const normalized = sizes.map(size => {
+  return sizes.map(size => {
     if (typeof size === 'string') {
       return { name: size, qty: 99 };
     }
@@ -94,10 +92,6 @@ function getSizeList(product, colorNameOrIndex = null) {
       qty: Number(size.qty) || 0
     };
   });
-
-  return normalized.sort((a, b) =>
-    order.indexOf(a.name) - order.indexOf(b.name)
-  );
 }
 
 function getAvailableSizes(product, colorNameOrIndex = null) {
