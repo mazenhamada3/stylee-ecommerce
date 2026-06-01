@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STYLEE — Cart</title>
+  <link rel="stylesheet" href="../shared/shared.css" />
+  <link rel="stylesheet" href="cart.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="top-nav">
+    <div class="logo" onclick="navigate('../home/home.html')">STYLEE</div>
+    <nav class="nav-links">
+      <button onclick="navigate('../home/home.html')">Home</button>
+      <button onclick="navigate('../products/products.html')">Shop</button>
+      <button class="admin-nav hidden" onclick="navigate('../admin/admin.html')">Admin Panel</button>
+      <button id="loginNav" onclick="navigate('../login/login.html')">Login</button>
+      <button class="cart-pill" onclick="navigate('../cart/cart.html')">Cart <span id="cartCount">0</span></button>
+    </nav>
+  </header>
+
+  <section class="cart-page page fade-page">
+    <div class="section-head">
+      <h2>Your Cart</h2>
+      <button class="btn light" onclick="navigate('../products/products.html')">Continue Shopping</button>
+    </div>
+    <div class="cart-layout">
+      <div id="cartItems"></div>
+      <aside class="summary">
+        <h2>Order Summary</h2>
+        <div class="summary-row"><span>Subtotal</span><strong id="subtotalText">$0</strong></div>
+        <div class="summary-row"><span>Shipping</span><strong id="shippingText">$0</strong></div>
+        <div class="summary-row total"><span>Total</span><strong id="totalText">$0</strong></div>
+        <button class="btn full" style="margin-top:18px" onclick="checkout()">Place Order</button>
+      </aside>
+    </div>
+  </section>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="../shared/data.js"></script>
+  <script src="../shared/utils.js"></script>
+  <script src="cart.js"></script>
+</body>
+</html>

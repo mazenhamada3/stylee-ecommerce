@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STYLEE — Admin</title>
+  <link rel="stylesheet" href="../shared/shared.css" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+
+  <header class="top-nav">
+    <div class="logo" onclick="navigate('../home/home.html')">STYLEE</div>
+
+    <nav class="nav-links">
+      <button onclick="navigate('../home/home.html')">Home</button>
+      <button onclick="navigate('../products/products.html')">Shop</button>
+      <button class="admin-nav hidden" onclick="navigate('../admin/admin.html')">Admin Panel</button>
+      <button id="loginNav" onclick="navigate('../login/login.html')">Login</button>
+      <button class="cart-pill" onclick="navigate('../cart/cart.html')">
+        Cart <span id="cartCount">0</span>
+      </button>
+    </nav>
+  </header>
+
+  <section class="admin-page page fade-page">
+    <div class="section-head">
+      <h2>Admin Panel</h2>
+      <button class="btn light" onclick="resetDemoData()">Reset Demo Data</button>
+    </div>
+
+    <div class="admin-grid">
+      <div class="panel">
+        <h2>Add Product</h2>
+
+        <div class="field">
+          <label>Product Name</label>
+          <input id="adminName" placeholder="Premium Puffer Jacket" />
+        </div>
+
+        <div class="field">
+          <label>Category</label>
+          <input id="adminCategory" placeholder="Jackets" />
+        </div>
+
+        <div class="field">
+          <label>Gender</label>
+          <select id="adminGender">
+            <option value="men">Men</option>
+            <option value="women">Women</option>
+            <option value="both">Both</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Price</label>
+          <input id="adminPrice" type="number" placeholder="179" />
+        </div>
+
+        <div class="field">
+          <label>Description</label>
+          <textarea id="adminDesc" rows="4" placeholder="Short product description"></textarea>
+        </div>
+
+        <h3 style="margin:18px 0 12px">Colors, Photos and Sizes</h3>
+
+        <div id="colorRows"></div>
+
+        <button class="btn light full" onclick="addColorRow()">+ Add Another Color</button>
+        <button class="btn full" style="margin-top:14px" onclick="addProduct()">Save Product</button>
+      </div>
+
+      <div class="admin-stack">
+        <div class="panel">
+          <h2>Current Products</h2>
+          <div id="adminProducts"></div>
+        </div>
+
+        <div class="panel">
+          <h2>Orders</h2>
+          <div id="adminOrders"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="../shared/data.js"></script>
+  <script src="../shared/utils.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

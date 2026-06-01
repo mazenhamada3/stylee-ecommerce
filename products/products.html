@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STYLEE — Shop</title>
+  <link rel="stylesheet" href="../shared/shared.css" />
+  <link rel="stylesheet" href="products.css" />
+</head>
+<body>
+
+  <header class="top-nav">
+    <div class="logo" onclick="navigate('../home/home.html')">STYLEE</div>
+
+    <nav class="nav-links">
+      <button onclick="navigate('../home/home.html')">Home</button>
+      <button onclick="navigate('../products/products.html')">Shop</button>
+      <button class="admin-nav hidden" onclick="navigate('../admin/admin.html')">Admin Panel</button>
+      <button id="loginNav" onclick="navigate('../login/login.html')">Login</button>
+      <button class="cart-pill" onclick="navigate('../cart/cart.html')">
+        Cart <span id="cartCount">0</span>
+      </button>
+    </nav>
+  </header>
+
+  <main class="main page fade-page" id="shopSection">
+    <div class="section-head">
+      <h2>Shop Products</h2>
+
+      <div class="filters">
+        <input id="searchInput" placeholder="Search product" oninput="renderProducts()" />
+
+        <select id="categoryFilter" onchange="renderProducts()">
+          <option value="all">All categories</option>
+        </select>
+
+        <select id="genderFilter" onchange="renderProducts()">
+          <option value="all">All genders</option>
+          <option value="men">Men</option>
+          <option value="women">Women</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="product-grid" id="productGrid"></div>
+  </main>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="../shared/data.js"></script>
+  <script src="../shared/utils.js"></script>
+  <script src="products.js"></script>
+</body>
+</html>

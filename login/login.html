@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STYLEE — Login</title>
+  <link rel="stylesheet" href="../shared/shared.css" />
+  <link rel="stylesheet" href="login.css"/>
+</head>
+<body>
+
+  <header class="top-nav">
+    <div class="logo" onclick="navigate('../home/home.html')">STYLEE</div>
+
+    <nav class="nav-links">
+      <button onclick="navigate('../home/home.html')">Home</button>
+      <button onclick="navigate('../products/products.html')">Shop</button>
+      <button class="admin-nav hidden" onclick="navigate('../admin/admin.html')">Admin Panel</button>
+      <button id="loginNav" onclick="navigate('../login/login.html')">Login</button>
+      <button class="cart-pill" onclick="navigate('../cart/cart.html')">
+        Cart <span id="cartCount">0</span>
+      </button>
+    </nav>
+  </header>
+
+  <main class="auth-page page fade-page">
+    <div class="auth-box">
+      <div class="logo auth-logo">STYLEE</div>
+      <h2>LOGIN</h2>
+
+      <div class="field">
+        <label>Email</label>
+        <input id="loginEmail" type="email" placeholder="example@email.com" />
+      </div>
+
+      <div class="field">
+        <label>Password</label>
+        <input id="loginPassword" type="password" placeholder="Password" />
+      </div>
+
+      <button class="btn full" onclick="fakeLogin()">Login</button>
+
+      <p class="auth-switch">
+        No account?
+        <span onclick="navigate('../register/register.html')">Create account</span>
+      </p>
+    </div>
+  </main>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="../shared/data.js"></script>
+  <script src="../shared/utils.js"></script>
+  <script src="login.js"></script>
+</body>
+</html>
