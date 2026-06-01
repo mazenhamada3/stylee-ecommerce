@@ -111,32 +111,4 @@ function update_order_status(array $data): void
         json_response(['success' => false, 'message' => $e->getMessage()], 422);
     }
 }
-
-/**
- * Add back stock quantities for all items in a cancelled order.
- */
-function restore_order_stock(PDO $pdo, int $orderId): void
-{
-    $itemsStmt = $pdo->prepare('SELECT product_id, color_name, size_name, qty FROM order_items WHERE order_id = ?');
-    $itemsStmt->execute([$orderId]);
-
-    $restoreStmt = $pdo->prepare('
-        UPDATE product_color_sizes pcs
-        JOIN product_colors pc ON pc.id = pcs.color_id
-        SET pcs.qty_stock = pcs.qty_stock + ?
-        WHERE pc.product_id = ?
-          AND pc.name       = ?
-          AND pcs.size_name = ?
-    ');
-
-    foreach ($itemsStmt->fetchAll() as $item) {
-        if (empty($item['product_id'])) continue;
-
-        $restoreStmt->execute([
-            (int) $item['qty'],
-            $item['product_id'],
-            $item['color_name'],
-            $item['size_name'],
-        ]);
-    }
-}
+// restore_order_stock() is defined in shared/functions.php — do not redeclare here

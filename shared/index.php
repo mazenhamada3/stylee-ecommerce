@@ -3,17 +3,22 @@
 //  shared/index.php  ← main entry point / router
 // ─────────────────────────────────────────────
 
-require __DIR__ . '/config.php';
-require __DIR__ . '/functions.php';
-require __DIR__ . '/../login/login.php';
-require __DIR__ . '/../products/products.php';
-require __DIR__ . '/../cart/cart.php';
-require __DIR__ . '/../admin/admin.php';
+require_once __DIR__ . '/config.php';
+require_once __DIR__ . '/functions.php';
+require_once __DIR__ . '/../login/login.php';
+require_once __DIR__ . '/../products/products.php';
+require_once __DIR__ . '/../cart/cart.php';
+require_once __DIR__ . '/../admin/admin.php';
 
 // ── Resolve route ─────────────────────────────────────────────────────────────
 $requestUri = $_SERVER['REQUEST_URI'];
-$route      = trim(parse_url($requestUri, PHP_URL_PATH), '/');
-$route      = str_replace('api/', '', $route);
+$path       = parse_url($requestUri, PHP_URL_PATH);
+
+// Remove everything up to and including "shared/index.php"
+// Supports: /Webproject/shared/index.php/products  →  products
+//           /shared/index.php/login               →  login
+$path  = preg_replace('#^.*shared/index\.php/?#', '', $path);
+$route = trim(str_replace('api/', '', $path), '/');
 
 if ($route === '') {
     $route = 'products';
@@ -21,7 +26,6 @@ if ($route === '') {
 
 // ── Dispatch ──────────────────────────────────────────────────────────────────
 try {
-    $route = ltrim($route, '/');
 
     switch ($route) {
 
@@ -31,6 +35,7 @@ try {
             require_method('GET');
             $id = $_GET['id'] ?? null;
             json_response(['success' => true, 'products' => fetch_products($id)]);
+            break;
 
         case 'register':
             require_method('POST');
@@ -46,10 +51,12 @@ try {
             require_method('POST');
             session_destroy();
             json_response(['success' => true, 'message' => 'Logged out.']);
+            break;
 
         case 'me':
             require_method('GET');
             json_response(['success' => true, 'user' => current_user()]);
+            break;
 
         case 'checkout':
             require_method('POST');
@@ -59,17 +66,17 @@ try {
         // ── Admin routes ──────────────────────────────────────────────────────
 
         case 'admin/products':
+            require_admin();
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                require_admin();
                 create_product(input_json());
                 break;
             }
             if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
-                require_admin();
                 delete_product($_GET['id'] ?? '');
                 break;
             }
             json_response(['success' => false, 'message' => 'Method not allowed.'], 405);
+            break;
 
         case 'admin/orders':
             require_admin();
@@ -82,6 +89,7 @@ try {
                 break;
             }
             json_response(['success' => false, 'message' => 'Method not allowed.'], 405);
+            break;
 
         case 'admin/reset':
             require_method('POST');
@@ -92,10 +100,13 @@ try {
         // ── Fallback ──────────────────────────────────────────────────────────
 
         default:
-            json_response(['success' => false, 'message' => 'Unknown API route.'], 404);
+            json_response([
+                'success' => false,
+                'message' => 'Unknown API route: ' . $route
+            ], 404);
     }
 
 } catch (Throwable $e) {
     error_log($e->getMessage());
-    json_response(['success' => false, 'message' => 'Server error. Check PHP/MySQL configuration.'], 500);
+    json_response(['success' => false, 'message' => 'Server error: ' . $e->getMessage()], 500);
 }
