@@ -78,17 +78,16 @@ try {
             json_response(['success' => false, 'message' => 'Method not allowed.'], 405);
             break;
 
-        case 'admin/orders':
+       case 'admin/orders':
             require_admin();
-            if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-                fetch_orders();
-                break;
-            }
-            if ($_SERVER['REQUEST_METHOD'] === 'PATCH') {
-                update_order_status(input_json());
-                break;
-            }
-            json_response(['success' => false, 'message' => 'Method not allowed.'], 405);
+            require_method('GET');
+            fetch_orders();
+            break;
+
+        case 'admin/order-status':
+            require_admin();
+            require_method('POST');
+            update_order_status(input_json());
             break;
 
         case 'admin/reset':

@@ -70,7 +70,7 @@ function fetch_orders(): void
  */
 function update_order_status(array $data): void
 {
-    $orderId = (int)($data['order_id'] ?? 0);
+    $orderId = (int)($data['orderId'] ?? $data['order_id'] ?? 0);
     $status  = trim((string)($data['status'] ?? ''));
 
     $allowed = ['delivered', 'cancelled'];

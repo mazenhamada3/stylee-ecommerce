@@ -34,6 +34,23 @@ function require_method(string $method): void
 // AUTH HELPERS
 // =============================
 
+function require_login(): array
+{
+    $user = current_user();
+    if (!$user) {
+        json_response(['success' => false, 'message' => 'You must be logged in.'], 401);
+    }
+    return $user;
+}
+
+function require_admin(): void
+{
+    $user = current_user();
+    if (!$user || $user['role'] !== 'admin') {
+        json_response(['success' => false, 'message' => 'Unauthorized.'], 403);
+    }
+}
+
 function current_user(): ?array
 {
     if (empty($_SESSION['user_id'])) return null;
