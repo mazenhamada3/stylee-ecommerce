@@ -52,7 +52,7 @@ img {
   }
 }
 
-/* ===== NAVBAR ===== */
+/* ===== NAVBAR – always one row ===== */
 .top-nav {
   height: 76px;
   background: #111;
@@ -64,6 +64,10 @@ img {
   position: sticky;
   top: 0;
   z-index: 50;
+  gap: 16px;
+  flex-wrap: nowrap;           /* never wrap – keep logo + links on one row */
+  overflow-x: auto;            /* horizontal scroll if needed */
+  white-space: nowrap;
 }
 
 .logo {
@@ -74,14 +78,14 @@ img {
   color: #fff;
   text-shadow: 2px 2px 0 #b68a21;
   cursor: pointer;
-  white-space: nowrap;
+  flex-shrink: 0;              /* prevent logo from shrinking */
 }
 
 .nav-links {
   display: flex;
   align-items: center;
   gap: 22px;
-  flex-wrap: wrap;
+  flex-shrink: 0;              /* prevent buttons container from shrinking */
 }
 
 .nav-links button {
@@ -91,7 +95,7 @@ img {
   opacity: 0.82;
   padding: 8px 12px;
   white-space: nowrap;
-  transition: opacity 0.2s;
+  flex-shrink: 0;
 }
 
 .nav-links button:hover {
@@ -104,6 +108,7 @@ img {
   padding: 8px 16px !important;
   border-radius: 999px;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 /* ===== PAGE CONTAINER ===== */
@@ -277,31 +282,31 @@ img {
   transform: translateY(0);
 }
 
-/* ===== RESPONSIVE (navbar & general) ===== */
+/* ===== RESPONSIVE – keep one row, only reduce sizes ===== */
 @media (max-width: 900px) {
   .top-nav {
     padding: 0 12px;
+    gap: 8px;
     height: auto;
-    min-height: 76px;
-    flex-wrap: wrap;
-    gap: 10px;
+    min-height: 60px;
   }
 
   .logo {
-    font-size: 22px;
+    font-size: 20px;
+    letter-spacing: -1px;
   }
 
   .nav-links {
-    gap: 8px;
+    gap: 6px;
   }
 
   .nav-links button {
-    font-size: 12px;
-    padding: 6px 10px;
+    font-size: 11px;
+    padding: 6px 8px;
   }
 
   .cart-pill {
-    padding: 6px 12px !important;
+    padding: 5px 10px !important;
   }
 
   .section-head {
@@ -315,18 +320,15 @@ img {
   }
 }
 
-/* Extra small devices (<= 480px) */
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   .nav-links {
     gap: 4px;
   }
-
   .nav-links button {
-    font-size: 11px;
-    padding: 5px 8px;
+    font-size: 10px;
+    padding: 5px 6px;
   }
-
-  .cart-pill {
-    padding: 5px 10px !important;
+  .logo {
+    font-size: 18px;
   }
 }
