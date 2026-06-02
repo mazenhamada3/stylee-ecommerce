@@ -1,7 +1,7 @@
 .hero {
-  min-height: 560px;
+  min-height: 750px;
   background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.72)),
-              url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1600') center/cover;
+              url('../assets/hero.png') center/cover;
   color: white;
   display: flex;
   align-items: flex-end;
