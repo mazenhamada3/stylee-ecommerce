@@ -82,12 +82,6 @@ try {
             update_order_status(input_json());
             break;
 
-        case 'admin/reset':
-            require_method('POST');
-            require_admin();
-            reset_demo_products();
-            break;
-
         // ── Fallback ──────────────────────────────────────────────────────────
 
         default:

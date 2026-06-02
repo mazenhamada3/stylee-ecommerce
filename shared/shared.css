@@ -5,6 +5,11 @@
   font-family: Arial, sans-serif;
 }
 
+html,
+body {
+  overflow-x: hidden;
+}
+
 body {
   background: #f3f3f3;
   color: #111;
@@ -184,18 +189,33 @@ button {
 }
 
 @media (max-width: 900px) {
+
   .top-nav {
-    padding: 0 18px;
+    height: 76px;
+    padding: 0 12px;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .logo {
+    font-size: 22px;
   }
 
   .nav-links {
-    gap: 10px;
+    gap: 6px;
+    flex-wrap: nowrap;
   }
 
   .nav-links button {
-    font-size: 12px;
+    font-size: 11px;
+    padding: 4px;
+  }
+
+  .cart-pill {
+    padding: 8px 10px;
   }
 }
+
 
 .field {
   display: grid;

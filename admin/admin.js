@@ -252,26 +252,6 @@ async function updateOrderStatus(orderId, status) {
   }
 }
 
-async function resetDemoData() {
-  try {
-    await api('admin/reset', {
-      method: 'POST',
-      body: '{}'
-    });
-
-    cart = [];
-    saveCart();
-    await Promise.all([loadProducts(), loadOrders()]);
-    renderAdmin();
-    renderOrders();
-    updateCartCount();
-
-    toast('Demo data reset');
-  } catch (error) {
-    toast(error.message);
-  }
-}
-
 function renderAdminAccessDenied() {
   const page = document.querySelector('.admin-page');
   page.innerHTML = `
