@@ -3,32 +3,11 @@
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  max-width: 100%;
-}
-/* Ensure form elements don't overflow */
-input, select, textarea {
-  max-width: 100%;
 }
 
-html,
-body {
+html, body {
   overflow-x: hidden;
-}
-
-/* All images are responsive */
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-/* Any panel or card should clip overflow */
-.panel, .admin-grid, .admin-stack {
-  overflow-x: auto;   /* allows horizontal scroll only if absolutely needed */
-}
-
-/* But better to avoid scroll – wrap tables/grids */
-.size-stock-grid {
-  overflow-x: auto;
+  width: 100%;
 }
 
 body {
@@ -210,33 +189,18 @@ button {
 }
 
 @media (max-width: 900px) {
-
   .top-nav {
-    height: 76px;
-    padding: 0 12px;
-    flex-direction: row;
-    justify-content: space-between;
-  }
-
-  .logo {
-    font-size: 22px;
+    padding: 0 18px;
   }
 
   .nav-links {
-    gap: 6px;
-    flex-wrap: nowrap;
+    gap: 10px;
   }
 
   .nav-links button {
-    font-size: 11px;
-    padding: 4px;
-  }
-
-  .cart-pill {
-    padding: 8px 10px;
+    font-size: 12px;
   }
 }
-
 
 .field {
   display: grid;
@@ -259,79 +223,4 @@ button {
   border-radius: 12px;
   background: #fafafa;
   outline: none;
-}
-
-/* Admin Panel – Force no horizontal scroll on any screen */
-.admin-page {
-  max-width: 100%;
-  overflow-x: hidden;
-  padding: 24px 16px;
-}
-
-.admin-grid,
-.admin-stack {
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
-/* ===== Mobile adjustments (already existing media query, but enhanced) ===== */
-@media (max-width: 900px) {
-  .admin-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  /* Make size-stock-grid responsive: fewer columns */
-  .size-stock-grid {
-    grid-template-columns: repeat(3, 1fr);  /* 3 columns on tablet */
-    gap: 8px;
-  }
-
-  /* For phones (<= 600px), use 2 columns */
-  @media (max-width: 600px) {
-    .size-stock-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  /* Color row – stack vertically */
-  .color-row {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-
-  .color-row .field:last-child {
-    width: 100%;
-  }
-
-  /* Admin product list – responsive */
-  .admin-product {
-    grid-template-columns: 70px 1fr;
-    gap: 12px;
-  }
-
-  .admin-product img {
-    width: 70px;
-    height: 70px;
-  }
-
-  /* Delete button moves to its own row on very small screens */
-  .admin-product .btn.danger {
-    grid-column: 1 / -1;
-    justify-self: start;
-    margin-top: 8px;
-  }
-
-  /* Reduce padding on panels */
-  .panel {
-    padding: 16px;
-  }
-
-  /* Ensure any table-like elements don't overflow */
-  .admin-stack,
-  .admin-page,
-  .product-grid,
-  .color-row-wrap {
-    overflow-x: hidden;
-  }
 }

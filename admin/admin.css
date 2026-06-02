@@ -4,9 +4,10 @@
 
 .admin-grid {
   display: grid;
-  grid-template-columns: 440px 1fr;
+  grid-template-columns: minmax(320px, 420px) 1fr;
   gap: 28px;
   align-items: start;
+  max-width: 100%;
 }
 
 .panel h2 {
@@ -91,44 +92,8 @@
 }
 
 @media (max-width: 900px) {
-  /* Your existing styles … */
-
-  .admin-page {
-    padding: 24px 4%;           /* reduce padding */
-  }
-
-  .size-stock-grid {
-    grid-template-columns: repeat(3, 1fr); /* 5 columns is too wide on small screens */
-    gap: 6px;
-  }
-
-  /* Let the color row stack vertically */
-  .color-row {
+  .admin-grid {
     grid-template-columns: 1fr;
-    gap: 8px;
-  }
-
-  .color-row .field:last-child {
-    width: 100%;
-  }
-
-  /* Admin product list – stack on very narrow screens */
-  .admin-product {
-    grid-template-columns: 70px 1fr;
-    gap: 10px;
-    position: relative;
-  }
-
-  .admin-product .btn.danger {
-    grid-column: 1 / -1;
-    justify-self: start;
-    margin-top: 8px;
-  }
-
-  /* Ensure images never overflow */
-  .admin-product img {
-    width: 70px;
-    height: 70px;
   }
 }
 
@@ -239,50 +204,9 @@
   font-size: 17px;
 }
 
-.admin-page {
-  min-height: auto !important;   /* override the .page min-height */
-  height: auto;
-  overflow-y: visible;
-}
-
-/* If admin page uses .page class as well, also override */
-.admin-page.page {
-  min-height: auto !important;
-}
-
-/* Ensure body doesn't add extra space */
-body {
-  height: auto;
-  min-height: 100vh;    /* normal behavior, no extra scroll */
-}
-
-/* ===== EMERGENCY FIX: Kill infinite scroll on admin page ===== */
-body,
-html {
-  height: auto !important;
-  min-height: auto !important;
-}
-
-.page,
-.admin-page,
-.admin-grid,
-.admin-stack,
-.panel {
-  min-height: auto !important;
-  height: auto !important;
-  overflow-y: visible !important;
-}
-
-/* Remove any extra bottom margins/paddings that might create empty space */
-.admin-page:last-child,
-.admin-stack:last-child,
-.panel:last-child {
-  margin-bottom: 0 !important;
-  padding-bottom: 0 !important;
-}
-
-/* If the products/orders list is extremely long, that's fine – but no empty space */
-.admin-product:last-child,
-.admin-order:last-child {
-  margin-bottom: 0 !important;
+.admin-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  transform: scale(0.95);
+  transform-origin: top center;
 }
