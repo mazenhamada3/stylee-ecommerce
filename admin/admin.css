@@ -238,3 +238,20 @@
   text-align: right;
   font-size: 17px;
 }
+
+.admin-page {
+  min-height: auto !important;   /* override the .page min-height */
+  height: auto;
+  overflow-y: visible;
+}
+
+/* If admin page uses .page class as well, also override */
+.admin-page.page {
+  min-height: auto !important;
+}
+
+/* Ensure body doesn't add extra space */
+body {
+  height: auto;
+  min-height: 100vh;    /* normal behavior, no extra scroll */
+}
