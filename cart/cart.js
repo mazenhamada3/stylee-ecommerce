@@ -35,7 +35,8 @@ function renderCart() {
   }
 
   const subtotal = cart.reduce((sum, item) => sum + Number(item.price) * Number(item.qty), 0);
-  const shipping = subtotal > 0 ? 12 : 0;
+  const SHIPPING_COSTS = { standard: 12, express: 25, free: 0 };
+  const shipping = subtotal > 0 ? SHIPPING_COSTS.standard : 0;
 
   document.getElementById('subtotalText').textContent = '$' + subtotal.toFixed(0);
   document.getElementById('shippingText').textContent = '$' + shipping.toFixed(0);
@@ -120,3 +121,13 @@ async function initCart() {
 }
 
 initCart();
+
+function goToCheckout() {
+  if (!cart.length) {
+    toast('Your cart is empty');
+    return;
+  }
+  navigate('../checkout/checkout.html');
+}
+
+

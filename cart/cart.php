@@ -9,7 +9,8 @@
  * Expects: { items: [{ productId, size, colorName, qty }] }
  */
 function checkout(array $data): void
-{
+{   
+    $shippingType = $data['shipping'] ?? 'standard';
     $user  = require_login();
     $items = $data['items'] ?? [];
 
@@ -77,7 +78,11 @@ function checkout(array $data): void
         }
 
         // ── Create order ──────────────────────────────────────────────────────
-        $shipping = $subtotal > 0 ? 12.00 : 0.00;
+        $shipping = match ($shippingType) {
+            'express'  => 25.00,
+            'free'     => 0.00,
+            default    => 12.00,
+        };
         $total    = $subtotal + $shipping;
 
         $pdo->prepare('INSERT INTO orders (user_id, subtotal, shipping, total, status) VALUES (?, ?, ?, ?, "placed")')

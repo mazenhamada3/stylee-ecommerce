@@ -182,3 +182,41 @@ function syncCartWithProducts() {
 }
 
 clearLocalDemoData();
+
+// ===== Conditional page initialisation =====
+function isAdminPage() {
+  return document.getElementById('adminProducts') !== null;
+}
+
+function isCartPage() {
+  return document.getElementById('cartItems') !== null;
+}
+
+function isCheckoutPage() {
+  return document.querySelector('.checkout-page') !== null;
+}
+
+async function initPage() {
+  if (isAdminPage()) {
+    await initAdmin();
+  } else if (isCartPage()) {
+    await initCart();
+  } else if (isCheckoutPage()) {
+    // Only load essential data for checkout – no cart rendering
+    try {
+      await Promise.all([loadProducts(), loadCurrentUser()]);
+      syncCartWithProducts();
+      updateCartCount();
+      // The checkout.js script will render its own summary
+    } catch (err) {
+      console.warn(err);
+    }
+  }
+}
+
+// Start after DOM ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initPage);
+} else {
+  initPage();
+}
