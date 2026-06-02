@@ -1,13 +1,12 @@
 .admin-page {
-  padding: 48px 6%;
+  padding: 48px 0;
 }
 
 .admin-grid {
   display: grid;
-  grid-template-columns: minmax(320px, 420px) 1fr;
+  grid-template-columns: 380px minmax(0, 1fr);
   gap: 28px;
-  align-items: start;
-  max-width: 100%;
+  width: 100%;
 }
 
 .panel h2 {
@@ -207,6 +206,5 @@
 .admin-wrapper {
   max-width: 1200px;
   margin: 0 auto;
-  transform: scale(0.95);
-  transform-origin: top center;
+  padding: 0 20px;
 }

@@ -104,6 +104,9 @@ button {
   align-items: center;
   gap: 18px;
   margin-bottom: 22px;
+  max-width: 1200px;
+  margin: 0 auto 22px auto;
+  padding: 0 20px;
 }
 
 .section-head h2 {
