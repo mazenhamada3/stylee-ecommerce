@@ -3,6 +3,11 @@
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
+  max-width: 100%;
+}
+/* Ensure form elements don't overflow */
+input, select, textarea {
+  max-width: 100%;
 }
 
 html,
@@ -254,4 +259,79 @@ button {
   border-radius: 12px;
   background: #fafafa;
   outline: none;
+}
+
+/* Admin Panel – Force no horizontal scroll on any screen */
+.admin-page {
+  max-width: 100%;
+  overflow-x: hidden;
+  padding: 24px 16px;
+}
+
+.admin-grid,
+.admin-stack {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* ===== Mobile adjustments (already existing media query, but enhanced) ===== */
+@media (max-width: 900px) {
+  .admin-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  /* Make size-stock-grid responsive: fewer columns */
+  .size-stock-grid {
+    grid-template-columns: repeat(3, 1fr);  /* 3 columns on tablet */
+    gap: 8px;
+  }
+
+  /* For phones (<= 600px), use 2 columns */
+  @media (max-width: 600px) {
+    .size-stock-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* Color row – stack vertically */
+  .color-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .color-row .field:last-child {
+    width: 100%;
+  }
+
+  /* Admin product list – responsive */
+  .admin-product {
+    grid-template-columns: 70px 1fr;
+    gap: 12px;
+  }
+
+  .admin-product img {
+    width: 70px;
+    height: 70px;
+  }
+
+  /* Delete button moves to its own row on very small screens */
+  .admin-product .btn.danger {
+    grid-column: 1 / -1;
+    justify-self: start;
+    margin-top: 8px;
+  }
+
+  /* Reduce padding on panels */
+  .panel {
+    padding: 16px;
+  }
+
+  /* Ensure any table-like elements don't overflow */
+  .admin-stack,
+  .admin-page,
+  .product-grid,
+  .color-row-wrap {
+    overflow-x: hidden;
+  }
 }
