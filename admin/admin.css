@@ -255,3 +255,34 @@ body {
   height: auto;
   min-height: 100vh;    /* normal behavior, no extra scroll */
 }
+
+/* ===== EMERGENCY FIX: Kill infinite scroll on admin page ===== */
+body,
+html {
+  height: auto !important;
+  min-height: auto !important;
+}
+
+.page,
+.admin-page,
+.admin-grid,
+.admin-stack,
+.panel {
+  min-height: auto !important;
+  height: auto !important;
+  overflow-y: visible !important;
+}
+
+/* Remove any extra bottom margins/paddings that might create empty space */
+.admin-page:last-child,
+.admin-stack:last-child,
+.panel:last-child {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* If the products/orders list is extremely long, that's fine – but no empty space */
+.admin-product:last-child,
+.admin-order:last-child {
+  margin-bottom: 0 !important;
+}
