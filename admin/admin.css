@@ -3,7 +3,7 @@
   padding: 24px 16px;
   max-width: 1400px;
   margin: 0 auto;
-  min-height: auto !important;     /* override shared .page min-height */
+  min-height: auto !important;
   height: auto;
   overflow-x: hidden;
 }
@@ -95,7 +95,7 @@
   font-size: 13px;
 }
 
-/* ===== PRODUCT LIST (admin) ===== */
+/* ===== PRODUCT LIST (Current Products) ===== */
 .admin-product {
   display: grid;
   grid-template-columns: 90px 1fr auto;
@@ -103,6 +103,7 @@
   align-items: center;
   padding: 12px;
   border-bottom: 1px solid #eee;
+  overflow-x: hidden;
 }
 
 .admin-product img {
@@ -117,6 +118,7 @@
 .admin-order {
   border-bottom: 1px solid #eee;
   padding: 16px 0;
+  overflow-x: hidden;
 }
 
 .admin-order:last-child {
@@ -129,18 +131,21 @@
   gap: 16px;
   align-items: flex-start;
   margin-bottom: 12px;
+  flex-wrap: wrap;
 }
 
 .admin-order-head p {
   color: #666;
   margin-top: 4px;
   font-size: 13px;
+  word-break: break-word;
 }
 
 .admin-order-actions {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 .order-status {
@@ -152,6 +157,7 @@
   font-size: 12px;
   font-weight: 900;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .order-status.delivered {
@@ -177,6 +183,7 @@
   background: #fafafa;
   border-radius: 12px;
   padding: 8px;
+  overflow-x: hidden;
 }
 
 .admin-order-item img {
@@ -191,6 +198,7 @@
   color: #666;
   margin-top: 3px;
   font-size: 13px;
+  word-break: break-word;
 }
 
 .admin-order-total {
@@ -206,7 +214,7 @@
   }
 
   .admin-grid {
-    grid-template-columns: 1fr;   /* stack form and list */
+    grid-template-columns: 1fr;
     gap: 20px;
   }
 
@@ -226,10 +234,11 @@
     width: 100%;
   }
 
-  /* product list: smaller image + delete button on its own row */
+  /* PRODUCT LIST (Current Products) – responsive */
   .admin-product {
     grid-template-columns: 70px 1fr;
     gap: 12px;
+    position: relative;
   }
 
   .admin-product img {
@@ -243,6 +252,26 @@
     margin-top: 8px;
   }
 
+  /* ORDERS – responsive */
+  .admin-order-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .order-status {
+    white-space: normal;
+    text-align: center;
+  }
+
+  .admin-order-item {
+    grid-template-columns: 50px 1fr;
+  }
+
+  .admin-order-item img {
+    width: 50px;
+    height: 50px;
+  }
+
   /* reduce panel padding */
   .panel {
     padding: 16px;
@@ -252,6 +281,24 @@
 /* extra small phones (<= 600px) */
 @media (max-width: 600px) {
   .size-stock-grid {
-    grid-template-columns: repeat(2, 1fr);  /* 2 columns */
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .admin-product {
+    grid-template-columns: 60px 1fr;
+  }
+
+  .admin-product img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .admin-order-item {
+    grid-template-columns: 45px 1fr;
+  }
+
+  .admin-order-item img {
+    width: 45px;
+    height: 45px;
   }
 }
