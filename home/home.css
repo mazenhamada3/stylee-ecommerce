@@ -93,20 +93,22 @@
   margin: 10px 0 16px;
 }
 
+/* ===== RESPONSIVE – keep navbar one row ===== */
 @media (max-width: 900px) {
-  .top-nav {
-    padding: 0 18px;
-  }
-
-  .nav-links {
-    gap: 10px;
-  }
-
-  .nav-links button {
-    font-size: 12px;
-  }
-
+  /* Hero adjustments */
   .hero {
     min-height: 460px;
   }
+
+  /* Filters wrap nicely */
+  .filters {
+    flex-direction: column;
+  }
+  .filters input,
+  .filters select {
+    width: 100%;
+    min-width: unset;
+  }
 }
+
+/* No navbar overrides – shared.css handles everything */
