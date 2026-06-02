@@ -1,22 +1,31 @@
+/* ===== ADMIN PAGE LAYOUT ===== */
 .admin-page {
-  padding: 48px 0;
+  padding: 24px 16px;
+  max-width: 1400px;
+  margin: 0 auto;
+  min-height: auto !important;     /* override shared .page min-height */
+  height: auto;
+  overflow-x: hidden;
 }
 
 .admin-grid {
   display: grid;
   grid-template-columns: 380px minmax(0, 1fr);
   gap: 28px;
+  align-items: start;
   width: 100%;
 }
 
-.panel h2 {
-  margin-bottom: 18px;
+.admin-stack {
+  display: grid;
+  gap: 28px;
 }
 
+/* ===== PRODUCT FORM ===== */
 .size-stock-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 8px; 
+  gap: 8px;
 }
 
 .size-stock-grid label {
@@ -73,6 +82,20 @@
   margin-bottom: 0;
 }
 
+.color-sizes-field {
+  grid-column: 1 / -1;
+  margin-top: 10px;
+}
+
+.admin-color-stock {
+  color: #666;
+  margin-top: 8px;
+  display: grid;
+  gap: 4px;
+  font-size: 13px;
+}
+
+/* ===== PRODUCT LIST (admin) ===== */
 .admin-product {
   display: grid;
   grid-template-columns: 90px 1fr auto;
@@ -90,34 +113,7 @@
   background: #eee;
 }
 
-@media (max-width: 900px) {
-  .admin-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.admin-stack {
-  display: grid;
-  gap: 28px;
-}
-
-.color-row {
-  grid-template-columns: 1fr 80px;
-}
-
-.color-sizes-field {
-  grid-column: 1 / -1;
-  margin-top: 10px;
-}
-
-.admin-color-stock {
-  color: #666;
-  margin-top: 8px;
-  display: grid;
-  gap: 4px;
-  font-size: 13px;
-}
-
+/* ===== ORDERS SECTION ===== */
 .admin-order {
   border-bottom: 1px solid #eee;
   padding: 16px 0;
@@ -203,8 +199,59 @@
   font-size: 17px;
 }
 
-.admin-wrapper {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
+/* ===== RESPONSIVE: TABLETS & MOBILE ===== */
+@media (max-width: 900px) {
+  .admin-page {
+    padding: 20px 12px;
+  }
+
+  .admin-grid {
+    grid-template-columns: 1fr;   /* stack form and list */
+    gap: 20px;
+  }
+
+  /* size-stock grid: 5 columns → 3 columns */
+  .size-stock-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+  }
+
+  /* color row stacks vertically */
+  .color-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .color-row .field:last-child {
+    width: 100%;
+  }
+
+  /* product list: smaller image + delete button on its own row */
+  .admin-product {
+    grid-template-columns: 70px 1fr;
+    gap: 12px;
+  }
+
+  .admin-product img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .admin-product .btn.danger {
+    grid-column: 1 / -1;
+    justify-self: start;
+    margin-top: 8px;
+  }
+
+  /* reduce panel padding */
+  .panel {
+    padding: 16px;
+  }
+}
+
+/* extra small phones (<= 600px) */
+@media (max-width: 600px) {
+  .size-stock-grid {
+    grid-template-columns: repeat(2, 1fr);  /* 2 columns */
+  }
 }
