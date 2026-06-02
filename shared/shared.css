@@ -74,12 +74,14 @@ img {
   color: #fff;
   text-shadow: 2px 2px 0 #b68a21;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .nav-links {
   display: flex;
   align-items: center;
   gap: 22px;
+  flex-wrap: wrap;
 }
 
 .nav-links button {
@@ -87,6 +89,9 @@ img {
   color: white;
   font-weight: 700;
   opacity: 0.82;
+  padding: 8px 12px;
+  white-space: nowrap;
+  transition: opacity 0.2s;
 }
 
 .nav-links button:hover {
@@ -96,8 +101,9 @@ img {
 .cart-pill {
   background: white !important;
   color: #111 !important;
-  padding: 10px 16px;
+  padding: 8px 16px !important;
   border-radius: 999px;
+  white-space: nowrap;
 }
 
 /* ===== PAGE CONTAINER ===== */
@@ -274,23 +280,53 @@ img {
 /* ===== RESPONSIVE (navbar & general) ===== */
 @media (max-width: 900px) {
   .top-nav {
-    padding: 0 18px;
-  }
-  .nav-links {
+    padding: 0 12px;
+    height: auto;
+    min-height: 76px;
+    flex-wrap: wrap;
     gap: 10px;
   }
+
+  .logo {
+    font-size: 22px;
+  }
+
+  .nav-links {
+    gap: 8px;
+  }
+
   .nav-links button {
     font-size: 12px;
+    padding: 6px 10px;
   }
+
   .cart-pill {
-    padding: 8px 12px;
+    padding: 6px 12px !important;
   }
+
   .section-head {
     flex-direction: column;
     align-items: stretch;
     gap: 12px;
   }
+
   .section-head h2 {
     font-size: 28px;
+  }
+}
+
+/* Extra small devices (<= 480px) */
+@media (max-width: 480px) {
+  .nav-links {
+    gap: 4px;
+  }
+
+  .nav-links button {
+    font-size: 11px;
+    padding: 5px 8px;
+  }
+
+  .cart-pill {
+    padding: 5px 10px !important;
   }
 }
