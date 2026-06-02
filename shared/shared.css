@@ -10,6 +10,22 @@ body {
   overflow-x: hidden;
 }
 
+/* All images are responsive */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Any panel or card should clip overflow */
+.panel, .admin-grid, .admin-stack {
+  overflow-x: auto;   /* allows horizontal scroll only if absolutely needed */
+}
+
+/* But better to avoid scroll – wrap tables/grids */
+.size-stock-grid {
+  overflow-x: auto;
+}
+
 body {
   background: #f3f3f3;
   color: #111;
