@@ -136,7 +136,7 @@ stylee-ecommerce/
 To run a local development instance of the live site:
 
 1. **Clone the repository:**
-   ```git clone https://github.com/oamrmm71/Web-project.git```
+   ```bash git clone https://github.com/oamrmm71/Web-project.git```
 
 2. **Configure your local environment:**
    * Move the project directory to your local web server root (e.g., `htdocs` for XAMPP or `/var/www/html`).
