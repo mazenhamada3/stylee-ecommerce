@@ -13,31 +13,31 @@ STYLEE handles a complete shopping flow—from dynamic product filtering to chec
 
 ### 1. Home & Hero Section
 *Clean, bold typography emphasizing brand identity.*
-![Home Screen](demo/Home.png)
+![Home Screen](Demo/Home.png)
 
 ### 2. Shop Catalog & Filtering
 *Intuitive product grid with custom category dropdowns.*
-![Shop Screen](demo/Products.png)
+![Shop Screen](Demo/Products.png)
 
 ### 3. Dynamic Product Details
 *Real-time color and size selection with live variant toggling.*
-![Product Detail Screen 1](demo/Products.png)
-![Product Detail Screen 2](demo/Screenshot%202026-06-16%20152522.jpg)
+![Product Detail Screen 1](Demo/Products.png)
+![Product Detail Screen 2](Demo/Screenshot%202026-06-16%20152522.jpg)
 
 ### 4. Custom Authentication Flow
 *Secure user registration and login forms built from scratch.*
-![Register Page](demo/Register.png)
-![Login Page](demo/Login.png)
+![Register Page](Demo/Register.png)
+![Login Page](Demo/Login.png)
 
 ### 5. Shopping Cart Management
 *Persistent cart engine supporting active quantity tracking.*
-![Cart](demo/Cart.png)
+![Cart](Demo/Cart.png)
 
 ### 6. Multi-Step Checkout Funnel
 *Interactive 3-stage validation pipeline featuring a custom credit card visualizer.*
-![Checkout Shipping](demo/Checkout.png)
-![Checkout Payment Blank](demo/Checkout.jpg)
-![Checkout Payment Active](demo/Screenshot%202026-06-16%20152714.jpg)
+![Checkout Shipping](Demo/Checkout.png)
+![Checkout Payment Blank](Demo/Checkout.jpg)
+![Checkout Payment Active](Demo/Screenshot%202026-06-16%20152714.jpg)
 
 ---
 
