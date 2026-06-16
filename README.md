@@ -63,7 +63,7 @@ STYLEE handles a complete shopping flow—from dynamic product filtering to chec
 ## 🗂️ Project Structure
 
 The project follows a strict modular structure where each feature contains its own assets and logic:
-
+```
 stylee-ecommerce/
 ├── admin/
 │   ├── admin.css
@@ -129,15 +129,14 @@ stylee-ecommerce/
 │   └── utils.js
 ├── core.php
 └── README.md
-
 ---
-
+```
 ## 🚀 Setup & Local Development
 
 To run a local development instance of the live site:
 
 1. **Clone the repository:**
-   git clone https://github.com/oamrmm71/Web-project.git
+   ```git clone https://github.com/oamrmm71/Web-project.git```
 
 2. **Configure your local environment:**
    * Move the project directory to your local web server root (e.g., `htdocs` for XAMPP or `/var/www/html`).
