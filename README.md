@@ -136,19 +136,21 @@ stylee-ecommerce/
 To run a local development instance of the live site:
 
 1. **Clone the repository:**
-   ```bash git clone https://github.com/oamrmm71/Web-project.git```
+   ```bash
+    git clone https://github.com/oamrmm71/Web-project.git
+   ```
 
-2. **Configure your local environment:**
+3. **Configure your local environment:**
    * Move the project directory to your local web server root (e.g., `htdocs` for XAMPP or `/var/www/html`).
 
-3. **Import the Database:**
+4. **Import the Database:**
    * Open phpMyAdmin or your MySQL CLI.
    * Import the database schema file inside the `database/` folder to build the tables.
 
-4. **Connect the Backend:**
+5. **Connect the Backend:**
    * Update the database credentials inside your connection configuration inside `shared/` or `core.php` to match your local MySQL setup.
 
-5. **Run:**
+6. **Run:**
    * Navigate to `http://localhost/stylee-ecommerce/home/home.html` in your browser.
 
 ---
