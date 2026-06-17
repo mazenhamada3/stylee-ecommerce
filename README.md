@@ -1,11 +1,18 @@
 # stylee-ecommerce
 
-A sleek, responsive streetwear e-commerce platform built with a component-based architecture using HTML, CSS, JavaScript, and PHP. 
+A sleek, responsive streetwear e-commerce platform built with a component-based architecture using HTML, CSS, JavaScript, and PHP.
 
-STYLEE handles a complete shopping flow—from dynamic product filtering to checkout—featuring a custom UI and a modular folder structure that keeps assets, markup, and logic neatly organized per feature.
+STYLEE handles a complete shopping flow—from dynamic product filtering to checkout—featuring a custom UI, role-based dynamic navigation, and a modular folder structure that keeps assets, markup, and logic neatly organized per feature.
+
+---
 
 ## 🌍 Live Deployment & Infrastructure
-**STYLEE is fully deployed and live.** The application is hosted on our bare-metal Dell Precision 7810 server running Proxmox. This gives us full control over the Apache/MySQL environment and public domain routing, allowing the site to securely handle live user traffic and global access.
+
+**STYLEE is fully deployed and live.** The application is completely up, running, and publicly accessible to any user, anywhere.
+
+* **Self-Hosted Bare-Metal Server:** The platform runs on our own Dell Precision 7810 server running Proxmox, giving us full control over the underlying Apache/MySQL environment rather than relying on a third-party host.
+* **Public Domain & Routing:** The deployment includes a fully configured public domain with active routing, allowing the site to securely handle real, global live traffic.
+* **Production-Grade Hosting:** Running on dedicated hardware rather than shared/virtual hosting gives the team full control over performance tuning, security hardening, and uptime.
 
 ---
 
@@ -17,12 +24,11 @@ STYLEE handles a complete shopping flow—from dynamic product filtering to chec
 
 ### 2. Shop Catalog & Filtering
 *Intuitive product grid with custom category dropdowns.*
-![Shop Screen](Demo/Products.png)
+![Products Screen](Demo/Products.png)
 
 ### 3. Dynamic Product Details
 *Real-time color and size selection with live variant toggling.*
-![Product Detail Screen 1](Demo/Products.png)
-![Product Detail Screen 2](Demo/Screenshot%202026-06-16%20152522.jpg)
+![Product Details Screen](Demo/Product_details.png)
 
 ### 4. Custom Authentication Flow
 *Secure user registration and login forms built from scratch.*
@@ -33,39 +39,44 @@ STYLEE handles a complete shopping flow—from dynamic product filtering to chec
 *Persistent cart engine supporting active quantity tracking.*
 ![Cart](Demo/Cart.png)
 
-### 6. Multi-Step Checkout Funnel
-*Interactive 3-stage validation pipeline featuring a custom credit card visualizer.*
-![Checkout Shipping](Demo/Checkout.png)
-![Checkout Payment Blank](Demo/Checkout.jpg)
-![Checkout Payment Active](Demo/Screenshot%202026-06-16%20152714.jpg)
+### 6. Checkout Funnel
+*Interactive multi-stage validation pipeline for order completion.*
+![Checkout Screen](Demo/Checkout.png)
+
+### 7. Dynamic Admin Panel
+*Protected admin dashboard, only accessible and visible to authenticated admin users.*
+![Admin Panel View 1](Demo/Admin1.png)
+![Admin Panel View 2](Demo/Admin2.png)
 
 ---
 
 ## ✨ Features
 
+* **Dynamic Role-Based Authentication:** The login and navigation flow is fully dynamic and session-aware. When a user logs in with admin credentials, a protected **"Admin Panel"** button dynamically appears in the navbar. For standard users, the experience defaults to the regular client view, and the admin link stays completely hidden.
 * **Component-Based Architecture:** Clean separation of features. Every page (Home, Cart, Login, etc.) is isolated in its own directory containing its respective HTML, CSS, JS, and PHP files.
 * **Advanced Product Catalog:** Interactive grid layout featuring category filtering and responsive design.
 * **Dynamic Product Details:** Real-time variant selection and image toggling built with vanilla JavaScript.
-* **Custom Authentication:** Secure User Registration and Login portals utilizing PHP session management.
+* **Custom Authentication:** Secure user registration and login portals utilizing PHP session management.
 * **Persistent Cart & Checkout:** Client-side cart management supporting the complete order lifecycle.
 
 ---
 
 ## 🛠️ Tech Stack
 
-* **Frontend:** HTML5, CSS3 (Custom root variables, flexbox/grid layouts), JavaScript (DOM manipulation, state management)
-* **Backend API:** Vanilla PHP 7.4+ (Routing, session management, and view rendering)
+* **Frontend (Decoupled UI):** HTML5, CSS3 (custom root variables, flexbox/grid layouts), JavaScript (DOM manipulation, state management, dynamic UI rendering)
+* **Backend (PHP Endpoints):** Vanilla PHP 7.4+ (routing, session management, and view rendering)
 * **Database:** MySQL
-* **Infrastructure:** Self-hosted bare-metal server with public DNS routing.
+* **Infrastructure:** Self-hosted bare-metal server (Dell Precision 7810, Proxmox) with public DNS routing.
 
 ---
 
 ## 🗂️ Project Structure
 
-The project follows a strict modular structure where each feature contains its own assets and logic:
 ```
 stylee-ecommerce/
+
 ├── admin/
+
 │   ├── admin.css
 │   ├── admin.html
 │   ├── admin.js
@@ -86,16 +97,7 @@ stylee-ecommerce/
 │   ├── migration_v2_color_swatches.sql
 │   └── migration_v3_delivery_status.sql
 ├── demo/
-│   ├── Screenshot 2026-06-16 152445.jpg
-│   ├── Screenshot 2026-06-16 152458.jpg
-│   ├── Screenshot 2026-06-16 152512.jpg
-│   ├── Screenshot 2026-06-16 152522.jpg
-│   ├── Screenshot 2026-06-16 152532.png
-│   ├── Screenshot 2026-06-16 152538.png
-│   ├── Screenshot 2026-06-16 152547.png
-│   ├── Screenshot 2026-06-16 152608.png
-│   ├── Screenshot 2026-06-16 152644.jpg
-│   └── Screenshot 2026-06-16 152714.jpg
+│   └── (all presentation screenshots)
 ├── home/
 │   ├── home.css
 │   ├── home.html
@@ -129,28 +131,29 @@ stylee-ecommerce/
 │   └── utils.js
 ├── core.php
 └── README.md
----
 ```
+---
+
 ## 🚀 Setup & Local Development
 
 To run a local development instance of the live site:
 
 1. **Clone the repository:**
-   ```bash
-    git clone https://github.com/oamrmm71/Web-project.git
-   ```
+```bash
+   git clone https://github.com/mazenhamada3/stylee-ecommerce.git
+```
 
-3. **Configure your local environment:**
+2. **Configure your local environment:**
    * Move the project directory to your local web server root (e.g., `htdocs` for XAMPP or `/var/www/html`).
 
-4. **Import the Database:**
+3. **Import the Database:**
    * Open phpMyAdmin or your MySQL CLI.
    * Import the database schema file inside the `database/` folder to build the tables.
 
-5. **Connect the Backend:**
+4. **Connect the Backend:**
    * Update the database credentials inside your connection configuration inside `shared/` or `core.php` to match your local MySQL setup.
 
-6. **Run:**
+5. **Run:**
    * Navigate to `http://localhost/stylee-ecommerce/home/home.html` in your browser.
 
 ---
@@ -158,12 +161,12 @@ To run a local development instance of the live site:
 ## 👤 Team Contributions
 
 **My Specific Focus Areas:**
-I was responsible for the **Frontend UI/UX, Client-Side Logic, and View Architecture** for key user flows. *(Note: Backend database queries and schema design were handled by my team partner).*
+I worked across the **frontend UI/UX, client-side logic, and view rendering layers** using HTML, CSS, JavaScript, and PHP for key user flows. *(Note: Core database queries, database connector logic, and SQL schema design were handled by my team partner.)*
 
 | Module | Files | What I Built |
 | :--- | :--- | :--- |
-| **Registration Flow** | register/register.html, register.css, register.js | Engineered the visual layout, responsive structural design, and client-side form architecture/validation for user onboarding. |
-| **Product Catalog** | products/products.html, products.css, products.js | Built the responsive product grid, styled the UI components, and wrote the frontend JavaScript logic to handle category filtering and rendering. |
+| **Registration Flow** | `register/register.html`, `register.css`, `register.js` | Engineered the visual layout, responsive structural design, and client-side form architecture/validation for user onboarding. |
+| **Product Catalog** | `products/products.html`, `products.css`, `products.js` | Built the responsive product grid, styled the UI components, and wrote the frontend JavaScript logic to handle category filtering and rendering. |
 
 ---
 
