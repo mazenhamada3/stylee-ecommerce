@@ -1,5 +1,7 @@
 # stylee-ecommerce
 
+🔗 **[Live Demo](https://stylee-web.tail3b67a6.ts.net/home/home.html)**
+
 A sleek, responsive streetwear e-commerce platform built with a component-based architecture using HTML, CSS, JavaScript, and PHP.
 
 STYLEE handles a complete shopping flow—from dynamic product filtering to checkout—featuring a custom UI, role-based dynamic navigation, and a modular folder structure that keeps assets, markup, and logic neatly organized per feature.
@@ -7,6 +9,8 @@ STYLEE handles a complete shopping flow—from dynamic product filtering to chec
 ---
 
 ## 🌍 Live Deployment & Infrastructure
+
+**Live Site:** [stylee-web.tail3b67a6.ts.net](https://stylee-web.tail3b67a6.ts.net/home/home.html)
 
 **STYLEE is fully deployed and live.** The application is completely up, running, and publicly accessible to any user, anywhere.
 
