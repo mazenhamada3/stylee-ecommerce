@@ -100,7 +100,7 @@ stylee-ecommerce/
 │   ├── database.sql
 │   ├── migration_v2_color_swatches.sql
 │   └── migration_v3_delivery_status.sql
-├── demo/
+├── Demo/
 │   └── (all presentation screenshots)
 ├── home/
 │   ├── home.css
